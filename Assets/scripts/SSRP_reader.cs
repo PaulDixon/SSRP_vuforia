@@ -339,39 +339,8 @@ public class SSRP_reader : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                try {
-                    SSRP_context_element_controller child_controller = hit.transform.GetComponent<SSRP_context_element_controller>();
-                    //child_controller.importData(entityData);
-                    
-                    child_controller.isClosed = !child_controller.isClosed;
-                    Debug.Log("click");
-                }
-                catch
-                {
-
-                }
-                    
-
-                
-                if (hit.transform.name == "Player")
-                {
-                    Debug.Log("This is a Player");
-                }
-                else
-                {
-                    Debug.Log("This isn't a Player");
-                }
-            }
-        }
     }
+        
 }

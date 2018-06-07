@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SSRP_entity_manager : MonoBehaviour {
 
-    PersistantManager boss = PersistantManager.Instance;
+    PersistantManager boss; 
     // Entity manager
     // Rendering gui
     public GameObject contextEntityViewGameObject; // we will be instatiating metaData Prefabs
@@ -21,7 +21,7 @@ public class SSRP_entity_manager : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-
+        boss = PersistantManager.Instance;
     }
 
     // Update is called once per frame
@@ -91,32 +91,36 @@ public class SSRP_entity_manager : MonoBehaviour {
             float lon = float.Parse(sLon);
             response.gpsPos = new Vector3(lat, lon);
             //Debug.LogFormat("Paul Dixon TODO: fix your distance calculation!");
-            PersistantManager.Instance.hud.addText("Paul Dixon TODO: fix your distance calculation!");
+            boss.hud.addText("Paul Dixon TODO: fix your distance calculation!");
             response.distToViewer = (double) Vector3.Distance(gpsPos, response.gpsPos);
-            
-            int distanceValue = 1;
+
+            int loc = 0;
+            int maxValue;
+            int minValue;
+            for (i = 0; i < m; i++)
+            {
+                maxValue = lodDistances[i + 1];
+                minValue = lodDistances[0];
+
+                if (response.distToViewer < maxValue && response.distToViewer > minValue)
+                {
+                    // Debug.LogFormat("TRUE - viewer gpsPos: [{0},{1}]Lat:{2}, lon:{3}, distToViewer:{4} fits in lod_{5}:{6}", gpsPos.x, gpsPos.y, response.gpsPos.x, response.gpsPos.y, response.distToViewer, i, lodDistances[i]);
+                    Debug.LogFormat("TRUE -  distToViewer:{0} fits in lod_{1}:{2}", response.distToViewer, i, lodDistances[i]);
+                    boss.hud.addText("TRUE -  distToViewer:" + response.distToViewer  + " fits in lod_" + i  + ":"+ lodDistances[i]);
+                    break;
+                    //distanceSorted[i].Add(response);
+                }
+
+
+            }
             /*
+
+            int distanceValue = 1;
+            
             while(distanceValue <= 800)
             {
                 response.distToViewer = distanceValue;
-                int loc = 0;
-                int maxValue;
-                int minValue;
-                for ( i = 0; i<m;i++)
-                {
-                    maxValue = lodDistances[i + 1];
-                    minValue = lodDistances[0];
-                    
-                    if (response.distToViewer < maxValue && response.distToViewer > minValue)
-                    {
-                        // Debug.LogFormat("TRUE - viewer gpsPos: [{0},{1}]Lat:{2}, lon:{3}, distToViewer:{4} fits in lod_{5}:{6}", gpsPos.x, gpsPos.y, response.gpsPos.x, response.gpsPos.y, response.distToViewer, i, lodDistances[i]);
-                        Debug.LogFormat("TRUE -  distToViewer:{0} fits in lod_{1}:{2}",  response.distToViewer, i, lodDistances[i]);
-                        break;
-                        //distanceSorted[i].Add(response);
-                    }
-
-                    
-                }
+               
                 distanceValue += 5;
 
             }

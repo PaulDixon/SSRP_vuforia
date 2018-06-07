@@ -22,6 +22,7 @@ public class SSRP_context_element_controller : MonoBehaviour {
     private bool canLocateBaseGO = false;
     public GameObject ViewPortContentTarget;      // this has to be defined here because Unity & my brain
 
+
     // MetaData which will be spawned into Attribute
     public GameObject attributGameObjectPrefab; // Attribute Canvas Prefabs 
     private List<GameObject> prefabChildList = new List<GameObject>();
@@ -29,13 +30,14 @@ public class SSRP_context_element_controller : MonoBehaviour {
     private Vector2 childPrefab_canvas_init_dimension;
     private bool canRenderChildData = false;
     private bool childUpdateRequired = false;
-  
-
+    GameObject scrollview;// = contextEntityViewGameObject.transform.Find("scrollView").gameObject;
+    RectTransform scrollview_canvas;//= scrollview.transform.GetComponent<RectTransform>();
     private SSRP_ContextElement data = new SSRP_ContextElement();
     private SSRP_ContextElement data_prev = new SSRP_ContextElement();
 
     // Use this for initialization
     void Start () {
+        isClosed = true;
         testUIRender();
         testParentLink();
         testPrefabLink();
@@ -45,8 +47,13 @@ public class SSRP_context_element_controller : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        
+        if (scrollview != null)
+        { scrollview.SetActive(!isClosed); }
+
+
+       
+    }
 
     
 
@@ -114,6 +121,7 @@ public class SSRP_context_element_controller : MonoBehaviour {
         {
             removeChildren();
         }
+        
 
     }
 
@@ -142,7 +150,7 @@ public class SSRP_context_element_controller : MonoBehaviour {
 
         if (canLocateBaseGO && canRenderChildData)
         {
-            if (m == 0 || isClosed)
+            if (m == 0)
             {
                 //newCanvasDimensions = childPrefab_canvas_init_dimension;
             }
@@ -181,8 +189,8 @@ public class SSRP_context_element_controller : MonoBehaviour {
              //       Debug.LogFormat("We have {0} attribute and a maxColSize of {1}, giving us a height:{2} and width:{3}", m, maxColSize, height, width);
                     try
                     {
-                        GameObject scrollview = contextEntityViewGameObject.transform.Find("scrollView").gameObject;
-                        RectTransform scrollview_canvas = scrollview.transform.GetComponent<RectTransform>();
+                        scrollview = contextEntityViewGameObject.transform.Find("scrollView").gameObject;
+                        scrollview_canvas = scrollview.transform.GetComponent<RectTransform>();
 
                         scrollview_canvas.sizeDelta = new Vector2(width, height);
                     }
@@ -266,7 +274,8 @@ public class SSRP_context_element_controller : MonoBehaviour {
         canRenderText = false;
         try
         {
-            
+            scrollview = contextEntityViewGameObject.transform.Find("scrollView").gameObject;
+            scrollview_canvas = scrollview.transform.GetComponent<RectTransform>();
             if (ui_id != null && ui_type != null && ui_status != null && ui_isPattern != null)
             {
                 canRenderText = true;
@@ -276,6 +285,8 @@ public class SSRP_context_element_controller : MonoBehaviour {
             else { Debug.LogWarningFormat("UI_404 canRenderText:{0}", canRenderText); }
         }
         catch { Debug.LogWarningFormat("UI_404 canRenderText:{0}", canRenderText); }
+
+        
     }
 
     private void testPrefabLink()

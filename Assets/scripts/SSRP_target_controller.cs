@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,31 +12,38 @@ public class SSRP_target_controller : MonoBehaviour {
     // we can compar this to the Marker DB and generate the expected marker to track.
     // This also provides and anchor point for adding the Sensor Information.
 
-    public GameObject infoPrefab;
-    public GameObject MarkerPrefab;
+    public string markerid;
+    public GameObject contextElementView;
+    public GameObject ImageTarget;
+    
+    public bool isMarkerTractedAndActive = false;
+    private SSRP_context_element_controller contextElement;
+
+
+    /*
     private List<MVC_entity> prefabList;
-
-    bool isMarkerTractedAndActive = false;
     bool hasPrefabs = false;
-
+   */
     
 
     // Use this for initialization
     void Start () {
+        //markerid = "eed385f01b6d4f11a32a43304d6deb2f";
         boss = PersistantManager.Instance;
-        prefabList = new List<MVC_entity> { new MVC_entity(infoPrefab) };
-        //prefabList.Add(new MVC_entity(MarkerPrefab));
-        hasPrefabs = boss.prefabCheck(prefabList);
-        if (hasPrefabs)
-        { 
-            boss.hud.addText("SSRP Target Controller - hasPrefabs: " + hasPrefabs);
+       if(contextElementView != null)
+        {
+            contextElement = contextElementView.GetComponent<SSRP_context_element_controller>();
         }
+      
     }
-	
-    public void initFor(string marker_id)
-    {
 
+    public void initFor(string _marker_id, SSRP_ContextElement _context_el)
+    { 
+        markerid = _marker_id;
         // access Vuforia;
+        if (contextElement)
+        { contextElement.importData(_context_el); }
+       
 
     }
 	// Update is called once per frame

@@ -297,6 +297,7 @@
     <Compile Include="Assets\scripts\fullSerializer\Source\Reflection\fsMetaType.cs" />
     <Compile Include="Assets\scripts\fullSerializer\Source\Reflection\fsReflectionUtility.cs" />
     <Compile Include="Assets\scripts\fullSerializer\Source\Reflection\fsTypeCache.cs" />
+    <Compile Include="Assets\scripts\interactionListener.cs" />
     <Compile Include="Assets\scripts\MVC_entity.cs" />
     <Compile Include="Assets\scripts\PersistantManager.cs" />
     <Compile Include="Assets\scripts\SSRP_Attribute_Controller.cs" />
@@ -307,9 +308,30 @@
     <Compile Include="Assets\scripts\SSRP_reader.cs" />
     <Compile Include="Assets\scripts\SSRP_sensor_protocol.cs" />
     <Compile Include="Assets\scripts\SSRP_target_controller.cs" />
+    <Compile Include="Assets\Vuforia\Scripts\DefaultInitializationErrorHandler.cs" />
+    <Compile Include="Assets\Vuforia\Scripts\DefaultTrackableEventHandler.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Editor\Vuforia\CylinderTargetTextures\VuforiaMars_Images\authoringinfo.xml" />
+    <None Include="Assets\Editor\Vuforia\Emulator\VuforiaEmulator.xml" />
+    <None Include="Assets\Editor\Vuforia\ForPrint\ModelTarget\readme_3dprint.txt" />
+    <None Include="Assets\Editor\Vuforia\TargetsetData\VuforiaMars_Object_info.xml" />
+    <None Include="Assets\Editor\Vuforia\VuforiaMars_ModelTarget\authoringinfo.xml" />
+    <None Include="Assets\Editor\Vuforia\VuforiaMars_VuMark\authoringinfo.xml" />
     <None Include="Assets\Resources\ssrp_response.txt" />
+    <None Include="Assets\StreamingAssets\Vuforia\SenseSmartMarkers.xml" />
+    <None Include="Assets\StreamingAssets\Vuforia\VuforiaMars_Images.xml" />
+    <None Include="Assets\StreamingAssets\Vuforia\VuforiaMars_ModelTarget.xml" />
+    <None Include="Assets\StreamingAssets\Vuforia\VuforiaMars_Object_OT.xml" />
+    <None Include="Assets\StreamingAssets\Vuforia\VuforiaMars_VuMark.xml" />
+    <None Include="Assets\Vuforia\Shaders\BrightTexture.shader" />
+    <None Include="Assets\Vuforia\Shaders\CameraDiffuse.shader" />
+    <None Include="Assets\Vuforia\Shaders\ColoredLines.shader" />
+    <None Include="Assets\Vuforia\Shaders\DepthContour.shader" />
+    <None Include="Assets\Vuforia\Shaders\DepthMask.shader" />
+    <None Include="Assets\Vuforia\Shaders\OutlineOpaque.shader" />
+    <None Include="Assets\Vuforia\Shaders\Text3D.shader" />
+    <None Include="Assets\Vuforia\Shaders\VertexLitWithZ.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

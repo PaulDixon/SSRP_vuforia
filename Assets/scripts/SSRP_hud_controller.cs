@@ -72,9 +72,9 @@ public class SSRP_hud_controller : MonoBehaviour {
 
     public void addText(string str)
     {
-        
 
 
+        Debug.Log(str);
         info.Add(str);
         renderText();
         if (!needsTidying)
