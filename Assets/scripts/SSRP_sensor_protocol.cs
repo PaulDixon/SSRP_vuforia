@@ -94,7 +94,7 @@ public class SSRP_contextResponse
     public SSRP_ContextElement contextElement;
     public Vector3 gpsPos = new Vector3(0f,0f,0f);
     public double distToViewer;
-    public string marker_id;
+    public string marker_name;
 
     public SSRP_contextResponse()
     {

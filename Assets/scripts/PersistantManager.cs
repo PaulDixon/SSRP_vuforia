@@ -20,6 +20,7 @@ public class PersistantManager : MonoBehaviour {
     private BinaryStateIcon _connectIcon;
     private BinaryStateIcon _workingIcon;
     private SSRP_hud_controller _hud;
+    private SSRP_target_controller _target;
 
     private List<MVC_entity> prefabList;
 
@@ -60,6 +61,7 @@ public class PersistantManager : MonoBehaviour {
         {
 
             Instance = this;
+            hasHud = false;
             init();
             
             DontDestroyOnLoad(gameObject);
@@ -108,27 +110,39 @@ public class PersistantManager : MonoBehaviour {
         }
     }
 
-    
+    public SSRP_target_controller target
+    {
+        get
+        {
+            return _target;
+        }
+    }
+
+
     private void init()
     {
         
-
-
-        hasHud = false;
-        try
+        if(!hasHud)
         {
-            _hud = hudView.GetComponent<SSRP_hud_controller>();
-            _ssrpIcon = ssrpStatusView.GetComponent<BinaryStateIcon>();
-            _connectIcon = internetStatusView.GetComponent<BinaryStateIcon>();
-            _workingIcon = workingStatusView.GetComponent<BinaryStateIcon>();
-            hasHud = true;
-            Debug.Log("Hud Found, debugging to commence there");
-            hud.addText("HUD active");
+            try
+            {
+                _hud = hudView.GetComponent<SSRP_hud_controller>();
+                _ssrpIcon = ssrpStatusView.GetComponent<BinaryStateIcon>();
+                _connectIcon = internetStatusView.GetComponent<BinaryStateIcon>();
+                _workingIcon = workingStatusView.GetComponent<BinaryStateIcon>();
+                _target = this.GetComponent<SSRP_target_controller>();
+                hasHud = true;
+                Debug.Log("Hud Found, debugging to commence there");
+                hud.addText("HUD active");
+            }
+            catch
+            {
+                Debug.LogWarning("Hud and icons not found");
+            }
         }
-        catch
-        {
-            Debug.LogWarning("Hud and icons not found");
-        }
+
+        
+        
             
        
         
