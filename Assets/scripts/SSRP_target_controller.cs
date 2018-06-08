@@ -104,7 +104,7 @@ public class SSRP_target_controller : MonoBehaviour {
             }
             foreach (SSRP_contextResponse cr in contextElement_currentList)
             {
-                boss.hud.addText(cr.description());
+                Debug.Log("cr:" + cr.marker_name);
             }
 
                 IEnumerable<TrackableBehaviour> tbs = TrackerManager.Instance.GetStateManager().GetTrackableBehaviours();
@@ -152,11 +152,13 @@ public class SSRP_target_controller : MonoBehaviour {
                         aug_obj.transform.localPosition = new Vector3(0f, 1.75f, 0f);
                         aug_obj.transform.localRotation = Quaternion.identity;
                         aug_obj.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
-                        SSRP_context_element_controller script = aug_obj.GetComponent<SSRP_context_element_controller>();
-                        if (script != null)
+                        /*
+                        SSRP_context_element_controller aug_obj_script = aug_obj.GetComponent<SSRP_context_element_controller>();
+                        if (aug_obj_script != null)
                         {
-                            script.importData(hit_response);
+                            aug_obj_script.importData(hit_response);
                         }
+                        // */
                         aug_obj.gameObject.SetActive(true);
                     }
                     else
