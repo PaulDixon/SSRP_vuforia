@@ -14,13 +14,13 @@ public class SSRP_participant
         Password = "";
     }
 
-    public SSRP_participant(string _email,string _pass)
+    public SSRP_participant(string _email, string _pass)
     {
         Email = _email;
         Password = _pass;
     }
 
-    
+
 
 }
 
@@ -41,9 +41,9 @@ public class SSRP_client
         Clientpassword = _pw;
     }
 
-    
 
-   
+
+
 }
 
 public class SSRP_entity
@@ -59,14 +59,14 @@ public class SSRP_entity
         SensorPassword = "";
     }
 
-    public SSRP_entity(string ent_id, string sen_id, string  sen_pw)
+    public SSRP_entity(string ent_id, string sen_id, string sen_pw)
     {
         Entity_id = ent_id;
         Sensorid = sen_id;
         SensorPassword = sen_pw;
     }
 
-   
+
 }
 
 
@@ -92,22 +92,16 @@ public class SSRP_contextResponse
     public Type ssrp_contextResponse;
     public SSRP_StatusCode statusCode;
     public SSRP_ContextElement contextElement;
-    public Vector3 gpsPos = new Vector3(0f,0f,0f);
-<<<<<<< HEAD
+    public Vector3 gpsPos = new Vector3(0f, 0f, 0f);
+
     public double distToViewer { get; internal set; }
-
-
     public string marker_name { get; internal set; }
-=======
-    public double distToViewer;
-    public string marker_name;
->>>>>>> 8002da9a5ecd3e3fb838bce86d407edaaf3b2e09
 
     public SSRP_contextResponse()
     {
         statusCode = new SSRP_StatusCode();
         contextElement = new SSRP_ContextElement();
-        gpsPos = new Vector3(0f, 0f,0f);
+        gpsPos = new Vector3(0f, 0f, 0f);
         distToViewer = 0;
 
     }
@@ -132,15 +126,13 @@ public class SSRP_contextResponse
         ret += "id: " + contextElement.id + ", ";
         ret += "type: " + contextElement.type + ", ";
         ret += "isPattern: " + contextElement.isPattern + ", ";
-        ret += "marker_name: " + marker_name + ", ";
-        ret += "gpsPos: " + gpsPos.ToString() + ", ";
         ret += contextElement.attributes.Length + "attribute(s) }";
         return ret;
     }
 
     public String getAttributeValue(String name)
     {
-        
+
         try
         {
             return contextElement.getAttributeValue(name);
@@ -159,21 +151,22 @@ public class SSRP_contextResponse
         foreach (SSRP_attribute att in contextElement.attributes)
         {
             ret += "(" + att.type + ") " + att.name + " = " + att.value;
-            try {
-                if (att.metadatas.Length > 0 )
-                {   
+            try
+            {
+                if (att.metadatas.Length > 0)
+                {
                     ret += " [";
                     foreach (SSRP_Metadata met in att.metadatas)
                     {
                         ret += att.description();
                         ret += met.name + ", ";
-                        ret += met.type +", ";
-                        ret += met.value +", "; 
+                        ret += met.type + ", ";
+                        ret += met.value + ", ";
 
                     }
                     ret += " ]";
                 }
-            } 
+            }
             catch
             {
 
@@ -287,7 +280,7 @@ public class SSRP_ContextElement
         type = _type;
         isPattern = _isPattern;
         attributes = new SSRP_attribute[0];
-        
+
     }
     public string getAttributeValue(String _name)
     {
@@ -313,16 +306,18 @@ public class SSRP_ContextElement
     public String description()
     {
         String returnString = "ContextElement: {";
-        try {
+        try
+        {
             returnString += "id = " + id + " type = " + type + " isPattern = " + isPattern;
             returnString += " attributes[";
-            foreach(SSRP_attribute att in attributes)
+            foreach (SSRP_attribute att in attributes)
             {
                 returnString += att.description();
             }
             returnString += "]";
-           
-        } catch { }
+
+        }
+        catch { }
         returnString += "}";
         return returnString;
     }
@@ -348,16 +343,16 @@ public class SSRP_attribute : SSRP_Metadata
         name = "";
         type = "";
         value = "";
-        metadatas = new SSRP_Metadata[] { }; 
+        metadatas = new SSRP_Metadata[] { };
     }
 
-    public SSRP_attribute(SSRP_Metadata[] list) 
+    public SSRP_attribute(SSRP_Metadata[] list)
     {
         int i = 0;
         int m = list.Length;
         if (m > 1) { metadatas = new SSRP_Metadata[m - 1]; }
-        for (i=0; i < m; i++)
-        { 
+        for (i = 0; i < m; i++)
+        {
             if (i == 0)
             {
                 name = list[i].name;
@@ -384,7 +379,7 @@ public class SSRP_attribute : SSRP_Metadata
         ret += "name:" + name + ", ";
         ret += "value: " + value + ", ";
         ret += "type:" + type + ", [";
-        foreach(SSRP_Metadata meta in metadatas)
+        foreach (SSRP_Metadata meta in metadatas)
         {
             ret += meta.description() + ", ";
         }
@@ -392,7 +387,7 @@ public class SSRP_attribute : SSRP_Metadata
         return ret;
     }
 }
-   
+
 
 /*
 metadata : 
@@ -407,14 +402,14 @@ public class SSRP_Metadata : IEnumerable
     public String type;
     public String value;
 
-    public  SSRP_Metadata()
+    public SSRP_Metadata()
     {
         name = "";
         type = "";
         value = "";
     }
 
-    public  SSRP_Metadata(String _name, String _type, String _value)
+    public SSRP_Metadata(String _name, String _type, String _value)
     {
         name = _name;
         type = _type;
@@ -425,13 +420,13 @@ public class SSRP_Metadata : IEnumerable
     public String description()
     {
         String ret = "metaData:{";
-        ret += "name:"  +   name + ", ";
+        ret += "name:" + name + ", ";
         ret += "value: " + value + ", ";
         ret += "type:" + type + "}";
-           
+
         return ret;
     }
-                        
+
 
     public IEnumerator GetEnumerator()
     {

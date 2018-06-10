@@ -15,7 +15,6 @@ public class SSRP_hud_controller : MonoBehaviour
     public int MaxMessages = 15;
     public Text ui_text;
     public Text UI_sensorslist;
-
     private bool isUI = false;
 
 
@@ -88,6 +87,7 @@ public class SSRP_hud_controller : MonoBehaviour
             StartCoroutine(houseKeeping());
         }
 
+
     }
 
     public void sensorBreakDown(string str)
@@ -98,17 +98,5 @@ public class SSRP_hud_controller : MonoBehaviour
         }
         //mock data
     }
-<<<<<<< HEAD
-}
-=======
 
-    public void sensorBreakDown(string str)
-    {
-        if (UI_sensorslist != null)
-        {
-            UI_sensorslist.text = str;
-        }
-        //mock data
-    }
 }
->>>>>>> 8002da9a5ecd3e3fb838bce86d407edaaf3b2e09

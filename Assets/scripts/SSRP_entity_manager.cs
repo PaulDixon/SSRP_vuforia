@@ -8,7 +8,7 @@ public class SSRP_entity_manager : MonoBehaviour
     PersistantManager boss;
     // Entity manager
     // Rendering gui
-    public GameObject contextEntityViewGameObject; // we will be instatiating metaData Prefabs
+    //public GameObject contextEntityViewGameObject; // we will be instatiating metaData Prefabs
     private RectTransform entity_canvas;           // Link to the attribute canvas
     private Vector2 entity_canvas_init_dimension;// Initial Attribute Rectangle position,height,width x,y,center, top,bottom,left,right
     private List<GameObject> prefabChildList = new List<GameObject>();
@@ -40,40 +40,6 @@ public class SSRP_entity_manager : MonoBehaviour
         }
     }
 
-    /*
-    public void open(string needle, bool forceSpawn = false)
-    {
-        // We should only instatiate and render the Sensor panel if near-by
-        // UNLESS we are have testing purposes
-        if (forceSpawn)
-        {
-
-            foreach (List<SSRP_contextResponse> distanceBracket in distanceSorted)
-            {
-                foreach (SSRP_contextResponse entity in distanceBracket)
-                {
-                    if (entity.marker_name == needle)
-                    {
-                        // render at testLocation
-                    }
-                }
-            }
-        }
-        else
-        {
-            foreach (SSRP_contextResponse entity in distanceSorted[0])
-            {
-                if (entity.marker_name == needle)
-                {
-                    // render at testMarker
-                }
-            }
-        }
-
-
-
-    }
-    */
 
     public void importEntity(SSRP_contextResponse[] _loraSensors_unordered_List)
     {
@@ -88,11 +54,8 @@ public class SSRP_entity_manager : MonoBehaviour
             // Find LAT and LON
             string sLat = response.getAttributeValue("LAT");
             string sLon = response.getAttributeValue("LON");
-<<<<<<< HEAD
+
             response.marker_name = response.getAttributeValue("marker_name");     // used to reference the QR / Vuforia Marker identity.
-=======
-            string marker_id = response.getAttributeValue("marker_name");     // used to reference the QR / Vuforia Marker identity.
->>>>>>> 8002da9a5ecd3e3fb838bce86d407edaaf3b2e09
             float lat = float.Parse(sLat);
 
             float lon = float.Parse(sLon);
@@ -104,7 +67,6 @@ public class SSRP_entity_manager : MonoBehaviour
             int loc = 0;
             int maxValue;
             int minValue;
-
             for (i = 0; i < m; i++)
             {
                 maxValue = lodDistances[i + 1];
@@ -115,18 +77,32 @@ public class SSRP_entity_manager : MonoBehaviour
                     // Debug.LogFormat("TRUE - viewer gpsPos: [{0},{1}]Lat:{2}, lon:{3}, distToViewer:{4} fits in lod_{5}:{6}", gpsPos.x, gpsPos.y, response.gpsPos.x, response.gpsPos.y, response.distToViewer, i, lodDistances[i]);
                     Debug.LogFormat("TRUE -  distToViewer:{0} fits in lod_{1}:{2}", response.distToViewer, i, lodDistances[i]);
                     boss.hud.addText("TRUE -  distToViewer:" + response.distToViewer + " fits in lod_" + i + ":" + lodDistances[i]);
-
-                    loc = i;
                     break;
+                    //distanceSorted[i].Add(response);
                 }
 
 
+            }
+
+            distanceSorted[loc].Add(response);
+
+            /* user to cycle through all the bounds.
+            int distanceValue = 1;
+            
+            while(distanceValue <= 800)
+            {
+                response.distToViewer = distanceValue;
+               
+                distanceValue += 5;
 
             }
-            distanceSorted[loc].Add(response);
-<<<<<<< HEAD
-
+            // */
         }
+
+
+
+
+
         List<SSRP_contextResponse> localMarkers = distanceSorted[0];
         // push nearest Lod to the marker generator
         boss.target.import(localMarkers);
@@ -144,37 +120,18 @@ public class SSRP_entity_manager : MonoBehaviour
 
         boss.hud.sensorBreakDown(sensorBreakDown_str);
 
-=======
 
-        }
-        List<SSRP_contextResponse> localMarkers = distanceSorted[0];
-        // push nearest Lod to the marker generator
-        boss.target.import(localMarkers);
 
-        // update hud SensorCount
-        string sensorBreakDown_str = "[SesnorList]\n";
-        int distanceBounds = lodDistances.Count;
-        distanceBounds--;
-        int counter = distanceBounds;
-        for (counter = distanceBounds-1; -1 < counter; counter--)
-        {
-            
-            sensorBreakDown_str += "[" + lodDistances[counter] + "m] " + distanceSorted[counter].Count + " sensor(s)\n";
-        }
-       
-        boss.hud.sensorBreakDown(sensorBreakDown_str);
 
->>>>>>> 8002da9a5ecd3e3fb838bce86d407edaaf3b2e09
+
         /*
         emptyEntity();
         AddEntity();
         renderEntities();
         */
-
-        //render nearBy
-
     }
 
+    /*
 
 
     private void emptyEntity()
@@ -191,25 +148,13 @@ public class SSRP_entity_manager : MonoBehaviour
         }
 
     }
+    
     private void AddEntity()
     {
         //data.attributes = new SSRP_attribute[] { };
         Vector2 newCanvasDimensions = new Vector2(0f, 0f);
         int m = distanceSorted[0].Count;
         int i = 0;
-
-
-<<<<<<< HEAD
-
-
-
-=======
-        
->>>>>>> 8002da9a5ecd3e3fb838bce86d407edaaf3b2e09
-
-
-
-
     }
 
     public void renderEntities()
@@ -243,6 +188,43 @@ public class SSRP_entity_manager : MonoBehaviour
 
         }
     }
+
+    
+    
+    public void open(string needle, bool forceSpawn = false)
+    {
+        // We should only instatiate and render the Sensor panel if near-by
+        // UNLESS we are have testing purposes
+        if (forceSpawn)
+        {
+
+            foreach (List<SSRP_contextResponse> distanceBracket in distanceSorted)
+            {
+                foreach (SSRP_contextResponse entity in distanceBracket)
+                {
+                    if (entity.marker_name == needle)
+                    {
+                        // render at testLocation
+                    }
+                }
+            }
+        }
+        else
+        {
+            foreach (SSRP_contextResponse entity in distanceSorted[0])
+            {
+                if (entity.marker_name == needle)
+                {
+                    // render at testMarker
+                }
+            }
+        }
+
+
+
+    }
+  
+  //  */
 
 
 }

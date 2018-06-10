@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Vuforia;
 using UnityEngine;
+using Vuforia;
 
 
-<<<<<<< HEAD
 public class SSRP_target_controller : MonoBehaviour
 {
-=======
-public class SSRP_target_controller : MonoBehaviour {
->>>>>>> 8002da9a5ecd3e3fb838bce86d407edaaf3b2e09
+
+
     PersistantManager boss;// = PersistantManager.Instance;
 
     // when the Sensor is within Marker distances (within 15m)
@@ -19,79 +17,90 @@ public class SSRP_target_controller : MonoBehaviour {
     // we can compar this to the Marker DB and generate the expected marker to track.
     // This also provides and anchor point for adding the Sensor Information.
 
-    // started my own class, but found this
-    // https://developer.vuforia.com/forum/faq/unity-load-dataset-setup-trackables-runtime
+    
+    
+    
+    private SSRP_context_element_controller contextElement;
+    public string dataSetName;
+    public GameObject  augmentationObject;
+    public GameObject augmentationAnchor;
 
-    // specify these in Unity Inspector
-    public GameObject augmentationObject = null;  // you can use teapot or other object
-    public GameObject augmentationAnchor = null;
-    public string dataSetName = "SenseSmartMarkers";  //  Assets/StreamingAssets/QCAR/DataSetName
-
-<<<<<<< HEAD
     private List<SSRP_contextResponse> contextElement_currentList;
     private List<SSRP_contextResponse> contextElement_previousList;
+    private string markerid;
+
+    /*
+    private List<MVC_entity> prefabList;
+    bool hasPrefabs = false;
+   */
+
+
+
+
+
 
 
     // Use this for initialization
     void Start()
-=======
-    private List<SSRP_contextResponse> contextElement_currentList; 
-    private List<SSRP_contextResponse> contextElement_previousList; 
 
-
-    // Use this for initialization
-    void Start ()
->>>>>>> 8002da9a5ecd3e3fb838bce86d407edaaf3b2e09
     {
         boss = PersistantManager.Instance;
         contextElement_currentList = null;
         contextElement_previousList = null;
-<<<<<<< HEAD
+        /*
+        if (contextElementView != null)
+        {
+            contextElement = contextElementView.GetComponent<SSRP_context_element_controller>();
+        }
+        // */
 
-        // Vuforia 6.2+
-
-=======
-        
-        // Vuforia 6.2+
-        
->>>>>>> 8002da9a5ecd3e3fb838bce86d407edaaf3b2e09
     }
 
+    /*
+    public void initFor(string _marker_id, SSRP_ContextElement _context_el)
+    {
+        markerid = _marker_id;
+        // access Vuforia;
+        if (contextElement)
+        { contextElement.importData(_context_el); }
+    }
+    */
+
+  
     public void import(List<SSRP_contextResponse> _list)
     {
-<<<<<<< HEAD
 
-=======
->>>>>>> 8002da9a5ecd3e3fb838bce86d407edaaf3b2e09
         boss = PersistantManager.Instance;
 
         contextElement_previousList = contextElement_currentList;
         contextElement_currentList = _list;
-<<<<<<< HEAD
 
-=======
-       
->>>>>>> 8002da9a5ecd3e3fb838bce86d407edaaf3b2e09
         if (contextElement_previousList != contextElement_currentList)
         {
             if (contextElement_currentList != null)
             {
-<<<<<<< HEAD
+
                 boss.hud.addText("rendering Imported targets : " + contextElement_currentList.Count);
+                // Vuforia 6.2+
                 VuforiaARController.Instance.RegisterVuforiaStartedCallback(LoadDataSet);
             }
+
         }
-
-
-
-
-
     }
+
+
+
+
+
     // Update is called once per frame
     void Update()
     {
 
     }
+
+
+
+    
 
     void LoadDataSet()
     {
@@ -126,7 +135,7 @@ public class SSRP_target_controller : MonoBehaviour {
             }
 
             int counter = 0;
-            /*
+
             foreach (Trackable trackObj in dataSet.GetTrackables())
             {
                 Debug.Log("dataSet [" + dataSetName + "]:" + trackObj.Name);
@@ -134,9 +143,8 @@ public class SSRP_target_controller : MonoBehaviour {
             }
             foreach (SSRP_contextResponse cr in contextElement_currentList)
             {
-                boss.hud.addText("EntityManger gave: " + cr.description());
+                Debug.Log("cr:" + cr.marker_name);
             }
-            // */
 
             IEnumerable<TrackableBehaviour> tbs = TrackerManager.Instance.GetStateManager().GetTrackableBehaviours();
             foreach (TrackableBehaviour tb in tbs)
@@ -153,18 +161,7 @@ public class SSRP_target_controller : MonoBehaviour {
                     }
 
                 }
-
-=======
-            boss.hud.addText("rendering nearby targets : " + contextElement_currentList.Count);
-            VuforiaARController.Instance.RegisterVuforiaStartedCallback(LoadDataSet);
-            }
-        }
-
-      
-     
-       
->>>>>>> 8002da9a5ecd3e3fb838bce86d407edaaf3b2e09
-
+             
                 if (hit_response != null && tb.name == "New Game Object")
                 {
                     //importData    
@@ -187,135 +184,13 @@ public class SSRP_target_controller : MonoBehaviour {
                         aug_anchor.transform.localScale = new Vector3(0.275f, 0.275f, 0.275f);
 
                         // instantiate augmentation object and parent to trackable
-                        // canvas and colider gets turned off??
                         GameObject aug_obj = (GameObject)GameObject.Instantiate(augmentationObject);
                         aug_obj.transform.SetParent(aug_anchor.transform);
 
                         aug_obj.transform.localPosition = new Vector3(0f, 1.75f, 0f);
                         aug_obj.transform.localRotation = Quaternion.identity;
                         aug_obj.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
-
-                        // canvas and colider gets turned off??
-                        SSRP_context_element_controller script = aug_obj.GetComponent<SSRP_context_element_controller>();
-                        if (script != null)
-                        {
-                            script.importData(hit_response);
-                        }
-                        aug_obj.gameObject.SetActive(true);
-                    }
-                    else
-                    {
-
-                        //Debug.Log("<color=yellow>Warning: No augmentation object specified for: " + tb.TrackableName + "</color>");
-                        boss.hud.addText("No augmentation object specified for: " + tb.TrackableName);
-                    }
-                }
-            }
-        }
-        else
-        {
-            //Debug.LogError("<color=yellow>Failed to load dataset: '" + dataSetName + "'</color>");
-            boss.hud.addText("Failed to load dataset: '" + dataSetName + "'");
-        }
-    }
-<<<<<<< HEAD
-}
-=======
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    void LoadDataSet()
-    {
-        boss = PersistantManager.Instance;
-        //Vuforia.ImageTarget;
-        boss.hud.addText("LoadDataSet");
-
-        ObjectTracker objectTracker = TrackerManager.Instance.GetTracker<ObjectTracker>();
-        if(objectTracker == null)
-        {
-            boss.hud.addText("error : TrackerManager.Instance.GetTracker<ObjectTracker>() == null" );
-            return;
-        }
-        DataSet dataSet = objectTracker.CreateDataSet();
-
-        if (dataSet.Load(dataSetName))
-        {
-
-            objectTracker.Stop();  // stop tracker so that we can add new dataset
-
-            if (!objectTracker.ActivateDataSet(dataSet))
-            {
-                // Note: ImageTracker cannot have more than 100 total targets activated
-                //Debug.Log("<color=yellow>Failed to Activate DataSet: " + dataSetName + "</color>");
-                boss.hud.addText("Failed to Activate DataSet: " + dataSetName );
-            }
-
-            if (!objectTracker.Start())
-            {
-                //Debug.Log("<color=yellow>Tracker Failed to Start.</color>");
-                boss.hud.addText("Tracker Failed to Start. " + dataSetName);
-            }
-
-            int counter = 0;
-           
-            foreach (Trackable trackObj in dataSet.GetTrackables())
-            {
-                Debug.Log("dataSet [" + dataSetName + "]:" + trackObj.Name);
-                //boss.hud.addText(trackObj.Name);
-            }
-            foreach (SSRP_contextResponse cr in contextElement_currentList)
-            {
-                Debug.Log("cr:" + cr.marker_name);
-            }
-
-                IEnumerable<TrackableBehaviour> tbs = TrackerManager.Instance.GetStateManager().GetTrackableBehaviours();
-            foreach (TrackableBehaviour tb in tbs)
-            {
-                SSRP_contextResponse hit_response = null;
-                if (contextElement_currentList != null)
-                {
-                    foreach (SSRP_contextResponse cr in contextElement_currentList)
-                    {
-                        if (tb.TrackableName == cr.marker_name)
-                        {
-                            hit_response = cr;
-                        }
-                    }
-                    
-                }
-
-                
-                if (hit_response != null && tb.name == "New Game Object")
-                {
-                    //importData    
-                    //SSRP_ContextElement el = 
-                    // change generic name to include trackable name
-                    tb.gameObject.name = ++counter + ":DynamicImageTarget-" + tb.TrackableName;
-
-                    // add additional script components for trackable
-                    tb.gameObject.AddComponent<DefaultTrackableEventHandler>();
-                    tb.gameObject.AddComponent<TurnOffBehaviour>();
-
-                    if (augmentationObject != null)
-                    {
                         
-                        // instantiate augmentation object and parent to trackable
-                        GameObject aug_anchor = (GameObject)GameObject.Instantiate(augmentationAnchor);
-                        aug_anchor.transform.SetParent(tb.gameObject.transform);
-                        aug_anchor.transform.localPosition =  Vector3.zero;
-                        aug_anchor.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
-                        aug_anchor.transform.localScale = new Vector3(0.275f, 0.275f, 0.275f);
-                        
-                        // instantiate augmentation object and parent to trackable
-                        GameObject aug_obj = (GameObject)GameObject.Instantiate(augmentationObject);
-                        aug_obj.transform.SetParent(aug_anchor.transform);
-                       
-                        aug_obj.transform.localPosition = new Vector3(0f, 1.75f, 0f);
-                        aug_obj.transform.localRotation = Quaternion.identity;
-                        aug_obj.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
-                        /*
                         SSRP_context_element_controller aug_obj_script = aug_obj.GetComponent<SSRP_context_element_controller>();
                         if (aug_obj_script != null)
                         {
@@ -340,5 +215,3 @@ public class SSRP_target_controller : MonoBehaviour {
         }
     }
 }
-
->>>>>>> 8002da9a5ecd3e3fb838bce86d407edaaf3b2e09
