@@ -93,10 +93,15 @@ public class SSRP_contextResponse
     public SSRP_StatusCode statusCode;
     public SSRP_ContextElement contextElement;
     public Vector3 gpsPos = new Vector3(0f,0f,0f);
+<<<<<<< HEAD
     public double distToViewer { get; internal set; }
 
 
     public string marker_name { get; internal set; }
+=======
+    public double distToViewer;
+    public string marker_name;
+>>>>>>> 8002da9a5ecd3e3fb838bce86d407edaaf3b2e09
 
     public SSRP_contextResponse()
     {

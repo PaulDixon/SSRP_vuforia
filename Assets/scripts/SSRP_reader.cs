@@ -8,7 +8,7 @@ using FullSerializer;
 
 public class SSRP_reader : MonoBehaviour {
 
-    private PersistantManager boss = PersistantManager.Instance;
+    private PersistantManager boss;
     private static readonly fsSerializer _serializer = new fsSerializer();
     // due to creative common agreement stuff
     public List<string> peopleToThank;

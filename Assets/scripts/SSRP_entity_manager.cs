@@ -88,7 +88,11 @@ public class SSRP_entity_manager : MonoBehaviour
             // Find LAT and LON
             string sLat = response.getAttributeValue("LAT");
             string sLon = response.getAttributeValue("LON");
+<<<<<<< HEAD
             response.marker_name = response.getAttributeValue("marker_name");     // used to reference the QR / Vuforia Marker identity.
+=======
+            string marker_id = response.getAttributeValue("marker_name");     // used to reference the QR / Vuforia Marker identity.
+>>>>>>> 8002da9a5ecd3e3fb838bce86d407edaaf3b2e09
             float lat = float.Parse(sLat);
 
             float lon = float.Parse(sLon);
@@ -120,6 +124,7 @@ public class SSRP_entity_manager : MonoBehaviour
 
             }
             distanceSorted[loc].Add(response);
+<<<<<<< HEAD
 
         }
         List<SSRP_contextResponse> localMarkers = distanceSorted[0];
@@ -139,6 +144,27 @@ public class SSRP_entity_manager : MonoBehaviour
 
         boss.hud.sensorBreakDown(sensorBreakDown_str);
 
+=======
+
+        }
+        List<SSRP_contextResponse> localMarkers = distanceSorted[0];
+        // push nearest Lod to the marker generator
+        boss.target.import(localMarkers);
+
+        // update hud SensorCount
+        string sensorBreakDown_str = "[SesnorList]\n";
+        int distanceBounds = lodDistances.Count;
+        distanceBounds--;
+        int counter = distanceBounds;
+        for (counter = distanceBounds-1; -1 < counter; counter--)
+        {
+            
+            sensorBreakDown_str += "[" + lodDistances[counter] + "m] " + distanceSorted[counter].Count + " sensor(s)\n";
+        }
+       
+        boss.hud.sensorBreakDown(sensorBreakDown_str);
+
+>>>>>>> 8002da9a5ecd3e3fb838bce86d407edaaf3b2e09
         /*
         emptyEntity();
         AddEntity();
@@ -173,7 +199,13 @@ public class SSRP_entity_manager : MonoBehaviour
         int i = 0;
 
 
+<<<<<<< HEAD
 
+
+
+=======
+        
+>>>>>>> 8002da9a5ecd3e3fb838bce86d407edaaf3b2e09
 
 
 

@@ -114,6 +114,7 @@ public class PersistantManager : MonoBehaviour
     public SSRP_target_controller target
     {
         get
+<<<<<<< HEAD
         {
             return _target;
         }
@@ -155,6 +156,41 @@ public class PersistantManager : MonoBehaviour
             hud.addText("Thanks to: ");
         }
         // */
+=======
+        {
+            return _target;
+        }
+    }
+
+
+    private void init()
+    {
+        
+        if(!hasHud)
+        {
+            try
+            {
+                _hud = hudView.GetComponent<SSRP_hud_controller>();
+                _ssrpIcon = ssrpStatusView.GetComponent<BinaryStateIcon>();
+                _connectIcon = internetStatusView.GetComponent<BinaryStateIcon>();
+                _workingIcon = workingStatusView.GetComponent<BinaryStateIcon>();
+                _target = this.GetComponent<SSRP_target_controller>();
+                hasHud = true;
+                Debug.Log("Hud Found, debugging to commence there");
+                hud.addText("HUD active");
+            }
+            catch
+            {
+                Debug.LogWarning("Hud and icons not found");
+            }
+        }
+
+        
+        
+            
+       
+        
+>>>>>>> 8002da9a5ecd3e3fb838bce86d407edaaf3b2e09
 
 
     }

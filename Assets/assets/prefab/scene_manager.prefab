@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1400611589991998}
+  m_IsPrefabParent: 1
+--- !u!1 &1400611589991998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4675780370139500}
+  - component: {fileID: 114825310405061584}
+  - component: {fileID: 114685666265458508}
+  - component: {fileID: 114345986678130114}
+  - component: {fileID: 114998898349016792}
+  m_Layer: 0
+  m_Name: scene_manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4675780370139500
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1400611589991998}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114345986678130114
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1400611589991998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebf1871c48eee7148bcd29a71baf59a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  contextEntityViewGameObject: {fileID: 1085439253953348, guid: 25a470892936e224691c3c5e6eb739af,
+    type: 2}
+  lodDistances: 000000000f00000019000000320000006400000090010000
+  gpsPos: {x: 64.751465, y: 20.954414, z: 0}
+--- !u!114 &114685666265458508
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1400611589991998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9348e4c537beae458d465b7c679e883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  peopleToThank: []
+  loraURL: www.
+  gameDataProjectFilePath: /Resources/ssrp_response.txt
+  ssrp_response_string: 
+  isAuthenticated: 1
+  isOnline: 0
+  isBeating: 1
+  heartbeat_bpm: 40
+  wwwTimer: 5
+  vApiKey: AWbv2Br/////AAADmfP5GXalbk/Un7Konr4YTlYJuhC11t5wmTGsILPJ5GP9vVPER2KxzmBAq7Pa+sNgfbsby96rYWi2U7Yue8d4SLdjmxtiB+P19oapvxndRHHnVcTyn1Z6/PVc9apPLs6AdRFy7PR/orE4oEoilC2wKe+lO7tpyL49zP5rSW5sQtCUYINMZdQOkm5kNqPIrXtsG3e7LO7b8Yt8e0BIK4okkZnjPV+ioRlrSpu/9MXeB6Vds8A8bDmV99ISBpRolr/cpskPJikHaCeV5NE5GGfdLOA1CFG9FX0/9Iv6YddqoC0wmG07LJGrz49e/17j5vHcNfR56/7UkhMZ4Dqf1XUTzImeCVIezGaj1JXdmq7fmR6m
+  vuforiaMarkerId: eed385f01b6d4f11a32a43304d6deb2f
+--- !u!114 &114825310405061584
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1400611589991998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d13bc8fc5a16b4dbff2e5b1cd83a28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hudView: {fileID: 0}
+  ssrpStatusView: {fileID: 0}
+  internetStatusView: {fileID: 0}
+  workingStatusView: {fileID: 0}
+--- !u!114 &114998898349016792
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1400611589991998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8b40c9ba5231404cb0e2d0e85250e73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  augmentationObject: {fileID: 1085439253953348, guid: 25a470892936e224691c3c5e6eb739af,
+    type: 2}
+  augmentationAnchor: {fileID: 1416825115219636, guid: e061146de83597e48abe7de759b52c32,
+    type: 2}
+  dataSetName: SenseSmartMarkers
