@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_scenes/ssrp_vuforiaReader.unity
+- path: Assets/_scenes/ssrp.unity
   isLoaded: 1
   isActive: 1
