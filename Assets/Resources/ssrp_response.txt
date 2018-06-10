@@ -10,8 +10,19 @@
                 "isPattern": "false",
 
                 "id": "0004a30b0022a677",
-
+				
                 "attributes": [
+				{
+
+                        "name": "marker_name",
+
+                        "type": "string",
+
+                        "value": "ssrlogo_w0p275m_h0p144m"
+
+                       
+
+                    },
 
                     {
 

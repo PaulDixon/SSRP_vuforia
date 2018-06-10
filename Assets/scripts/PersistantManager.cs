@@ -3,14 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PersistantManager : MonoBehaviour {
+public class PersistantManager : MonoBehaviour
+{
 
     public static PersistantManager Instance { get; private set; }
 
-    
+
     bool hasPrefabs = false;
     bool hasHud = false;
-    
+
     public GameObject hudView;
     public GameObject ssrpStatusView;
     public GameObject internetStatusView;
@@ -20,6 +21,7 @@ public class PersistantManager : MonoBehaviour {
     private BinaryStateIcon _connectIcon;
     private BinaryStateIcon _workingIcon;
     private SSRP_hud_controller _hud;
+    private SSRP_target_controller _target;
 
     private List<MVC_entity> prefabList;
 
@@ -40,7 +42,7 @@ public class PersistantManager : MonoBehaviour {
         {
             if (entity.go == null)
             {
-               Debug.Log("Prefab not set");
+                Debug.Log("Prefab not set");
 
                 return false;
             }
@@ -60,8 +62,9 @@ public class PersistantManager : MonoBehaviour {
         {
 
             Instance = this;
+            hasHud = false;
             init();
-            
+
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -70,7 +73,7 @@ public class PersistantManager : MonoBehaviour {
         }
     }
 
-    
+
     public BinaryStateIcon connectIcon
     {
         get
@@ -78,9 +81,9 @@ public class PersistantManager : MonoBehaviour {
             return _connectIcon;
         }
 
-       
+
     }
-   
+
 
     public BinaryStateIcon ssrpIcon
     {
@@ -88,7 +91,7 @@ public class PersistantManager : MonoBehaviour {
         {
             return _ssrpIcon;
         }
-        
+
     }
 
     public BinaryStateIcon workingIcon
@@ -97,7 +100,7 @@ public class PersistantManager : MonoBehaviour {
         {
             return _workingIcon;
         }
-        
+
     }
 
     public SSRP_hud_controller hud
@@ -108,42 +111,54 @@ public class PersistantManager : MonoBehaviour {
         }
     }
 
-    
-    private void init()
+    public SSRP_target_controller target
     {
-        
-
-
-        hasHud = false;
-        try
+        get
         {
-            _hud = hudView.GetComponent<SSRP_hud_controller>();
-            _ssrpIcon = ssrpStatusView.GetComponent<BinaryStateIcon>();
-            _connectIcon = internetStatusView.GetComponent<BinaryStateIcon>();
-            _workingIcon = workingStatusView.GetComponent<BinaryStateIcon>();
-            hasHud = true;
-            Debug.Log("Hud Found, debugging to commence there");
-            hud.addText("HUD active");
+            return _target;
         }
-        catch
-        {
-            Debug.LogWarning("Hud and icons not found");
-        }
-            
-       
-        
-
-            //hud.addText("[peopleToThank]");
-            /*
-            foreach (string person in peopleToThank)
-            {
-                hud.addText("Thanks to: ");
-            }
-            // */
-
-        
     }
 
-   
+
+    private void init()
+    {
+
+        if (!hasHud)
+        {
+            try
+            {
+                _hud = hudView.GetComponent<SSRP_hud_controller>();
+                _ssrpIcon = ssrpStatusView.GetComponent<BinaryStateIcon>();
+                _connectIcon = internetStatusView.GetComponent<BinaryStateIcon>();
+                _workingIcon = workingStatusView.GetComponent<BinaryStateIcon>();
+                _target = this.GetComponent<SSRP_target_controller>();
+                hasHud = true;
+                Debug.Log("Hud Found, debugging to commence there");
+                hud.addText("HUD active");
+            }
+            catch
+            {
+                Debug.LogWarning("Hud and icons not found");
+            }
+        }
+
+
+
+
+
+
+
+        //hud.addText("[peopleToThank]");
+        /*
+        foreach (string person in peopleToThank)
+        {
+            hud.addText("Thanks to: ");
+        }
+        // */
+
+
+    }
+
+
 
 }

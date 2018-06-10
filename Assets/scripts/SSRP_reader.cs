@@ -111,7 +111,7 @@ public class SSRP_reader : MonoBehaviour {
         CheckSSRPQueryResponse(malformed_ssrp_authenticatedQueryRespnse);
         SSRP_Connection_Error();
         readStoredResponseFromFile();
-        entityManager.open(vuforiaMarkerId);
+   //     entityManager.open(vuforiaMarkerId);
 
 
     }

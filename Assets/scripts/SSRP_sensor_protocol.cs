@@ -93,8 +93,10 @@ public class SSRP_contextResponse
     public SSRP_StatusCode statusCode;
     public SSRP_ContextElement contextElement;
     public Vector3 gpsPos = new Vector3(0f,0f,0f);
-    public double distToViewer;
-    public string marker_id;
+    public double distToViewer { get; internal set; }
+
+
+    public string marker_name { get; internal set; }
 
     public SSRP_contextResponse()
     {
@@ -125,6 +127,8 @@ public class SSRP_contextResponse
         ret += "id: " + contextElement.id + ", ";
         ret += "type: " + contextElement.type + ", ";
         ret += "isPattern: " + contextElement.isPattern + ", ";
+        ret += "marker_name: " + marker_name + ", ";
+        ret += "gpsPos: " + gpsPos.ToString() + ", ";
         ret += contextElement.attributes.Length + "attribute(s) }";
         return ret;
     }

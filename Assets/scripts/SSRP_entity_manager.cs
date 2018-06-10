@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SSRP_entity_manager : MonoBehaviour {
+public class SSRP_entity_manager : MonoBehaviour
+{
 
-    PersistantManager boss; 
+    PersistantManager boss;
     // Entity manager
     // Rendering gui
     public GameObject contextEntityViewGameObject; // we will be instatiating metaData Prefabs
@@ -12,11 +13,11 @@ public class SSRP_entity_manager : MonoBehaviour {
     private Vector2 entity_canvas_init_dimension;// Initial Attribute Rectangle position,height,width x,y,center, top,bottom,left,right
     private List<GameObject> prefabChildList = new List<GameObject>();
 
-    public List<int> lodDistances = new List<int>() {0, 15, 25, 50, 100, 400 };
+    public List<int> lodDistances = new List<int>() { 0, 15, 25, 50, 100, 400 };
     public List<List<SSRP_contextResponse>> distanceSorted;
     private bool canLocateEntityPrefab = false;
     public Vector3 gpsPos = new Vector3(64.751465f, 20.954414f);
-    
+
 
     // Use this for initialization
     void Start()
@@ -39,18 +40,19 @@ public class SSRP_entity_manager : MonoBehaviour {
         }
     }
 
+    /*
     public void open(string needle, bool forceSpawn = false)
     {
         // We should only instatiate and render the Sensor panel if near-by
         // UNLESS we are have testing purposes
         if (forceSpawn)
         {
-            
+
             foreach (List<SSRP_contextResponse> distanceBracket in distanceSorted)
             {
                 foreach (SSRP_contextResponse entity in distanceBracket)
                 {
-                    if (entity.marker_id == needle)
+                    if (entity.marker_name == needle)
                     {
                         // render at testLocation
                     }
@@ -61,42 +63,44 @@ public class SSRP_entity_manager : MonoBehaviour {
         {
             foreach (SSRP_contextResponse entity in distanceSorted[0])
             {
-                if (entity.marker_id == needle)
+                if (entity.marker_name == needle)
                 {
                     // render at testMarker
                 }
             }
         }
-       
 
-        
+
+
     }
+    */
 
     public void importEntity(SSRP_contextResponse[] _loraSensors_unordered_List)
     {
         generateEmptySortingList();
-        
-        int m = lodDistances.Count-1;
+
+        int m = lodDistances.Count - 1;
         int i = 0;
-        
+
         foreach (SSRP_contextResponse response in _loraSensors_unordered_List)
         {
-            
+
             // Find LAT and LON
             string sLat = response.getAttributeValue("LAT");
             string sLon = response.getAttributeValue("LON");
-            string marker_id = response.getAttributeValue("marker_ID");     // used to reference the QR / Vuforia Marker identity.
+            response.marker_name = response.getAttributeValue("marker_name");     // used to reference the QR / Vuforia Marker identity.
             float lat = float.Parse(sLat);
 
             float lon = float.Parse(sLon);
             response.gpsPos = new Vector3(lat, lon);
             //Debug.LogFormat("Paul Dixon TODO: fix your distance calculation!");
             boss.hud.addText("Paul Dixon TODO: fix your distance calculation!");
-            response.distToViewer = (double) Vector3.Distance(gpsPos, response.gpsPos);
+            response.distToViewer = (double)Vector3.Distance(gpsPos, response.gpsPos);
 
             int loc = 0;
             int maxValue;
             int minValue;
+
             for (i = 0; i < m; i++)
             {
                 maxValue = lodDistances[i + 1];
@@ -106,33 +110,42 @@ public class SSRP_entity_manager : MonoBehaviour {
                 {
                     // Debug.LogFormat("TRUE - viewer gpsPos: [{0},{1}]Lat:{2}, lon:{3}, distToViewer:{4} fits in lod_{5}:{6}", gpsPos.x, gpsPos.y, response.gpsPos.x, response.gpsPos.y, response.distToViewer, i, lodDistances[i]);
                     Debug.LogFormat("TRUE -  distToViewer:{0} fits in lod_{1}:{2}", response.distToViewer, i, lodDistances[i]);
-                    boss.hud.addText("TRUE -  distToViewer:" + response.distToViewer  + " fits in lod_" + i  + ":"+ lodDistances[i]);
+                    boss.hud.addText("TRUE -  distToViewer:" + response.distToViewer + " fits in lod_" + i + ":" + lodDistances[i]);
+
+                    loc = i;
                     break;
-                    //distanceSorted[i].Add(response);
                 }
 
 
-            }
-            /*
-
-            int distanceValue = 1;
-            
-            while(distanceValue <= 800)
-            {
-                response.distToViewer = distanceValue;
-               
-                distanceValue += 5;
 
             }
-            // */
+            distanceSorted[loc].Add(response);
+
+        }
+        List<SSRP_contextResponse> localMarkers = distanceSorted[0];
+        // push nearest Lod to the marker generator
+        boss.target.import(localMarkers);
+
+        // update hud SensorCount
+        string sensorBreakDown_str = "[SesnorList]\n";
+        int distanceBounds = lodDistances.Count;
+        distanceBounds--;
+        int counter = distanceBounds;
+        for (counter = distanceBounds - 1; -1 < counter; counter--)
+        {
+
+            sensorBreakDown_str += "[" + lodDistances[counter] + "m] " + distanceSorted[counter].Count + " sensor(s)\n";
         }
 
+        boss.hud.sensorBreakDown(sensorBreakDown_str);
 
-
-
+        /*
         emptyEntity();
         AddEntity();
         renderEntities();
+        */
+
+        //render nearBy
 
     }
 
@@ -161,7 +174,8 @@ public class SSRP_entity_manager : MonoBehaviour {
 
 
 
-        
+
+
 
 
     }
@@ -171,7 +185,7 @@ public class SSRP_entity_manager : MonoBehaviour {
 
         if (contextEntityViewGameObject)
         {
-            Vector3 pos = new Vector3(0f, 0f,0f);
+            Vector3 pos = new Vector3(0f, 0f, 0f);
 
             // loop through list of Child data and generate their UI
             foreach (SSRP_contextResponse entityReponse in distanceSorted[0])
@@ -198,5 +212,5 @@ public class SSRP_entity_manager : MonoBehaviour {
         }
     }
 
-    
+
 }
