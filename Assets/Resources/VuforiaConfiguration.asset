@@ -8,25 +8,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -2067402452, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
+  m_Script: {fileID: -2067402452, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: VuforiaConfiguration
   m_EditorClassIdentifier: 
   vuforia:
-    vuforiaLicenseKey: AWbv2Br/////AAADmfP5GXalbk/Un7Konr4YTlYJuhC11t5wmTGsILPJ5GP9vVPER2KxzmBAq7Pa+sNgfbsby96rYWi2U7Yue8d4SLdjmxtiB+P19oapvxndRHHnVcTyn1Z6/PVc9apPLs6AdRFy7PR/orE4oEoilC2wKe+lO7tpyL49zP5rSW5sQtCUYINMZdQOkm5kNqPIrXtsG3e7LO7b8Yt8e0BIK4okkZnjPV+ioRlrSpu/9MXeB6Vds8A8bDmV99ISBpRolr/cpskPJikHaCeV5NE5GGfdLOA1CFG9FX0/9Iv6YddqoC0wmG07LJGrz49e/17j5vHcNfR56/7UkhMZ4Dqf1XUTzImeCVIezGaj1JXdmq7fmR6m
-    ufoLicenseKey: QWRLTG1ONy8vLy8vQUFBQUtQYSticEErREVnYWtGSS9BQ1BCUTJseG44ejJnWTlia2hoZGhicHVaYWkyTjhVazZXcW4vUFE0WFVTQU4vREQza1FJYTJxcmhRY3g1cHFOM2t1dVRYdkRwYVNMQXVCUmFiclI1SE9rQ1NBb1ExT1Rhb1FPb1ZBTUViekt3Z3FPMTdpdmR1Wlkza3Zwb2t5U2VINWpNY0VPVUpOTVZtNW5qZWs1aGU0UVVyMEhvSkxxR3R2OXdUUndHcWM2RENWNTkvOHZWa1Awekk0ZTlzNytsaWtTSjF2YUt2bjRRTC9jcktzYjhmSGN0VW45TlBDUGxVSk1WVTBjdEFoRUM5REZsRVhnZ3FPV0x2aTcwQ1RwVlBkRGltYWU1NG5QS3ZHcVBUcmYycDE0MWlCVzYzaVBURzZhMXgrNkNiaHpweG0reDlBK3RmTXBHNm5VZHBJbEQ1V1ZHZGVUbFNpOWUxMjR2dEFsQmhJeWhMdTU=
+    vuforiaLicenseKey: AfKmyPP/////AAABmX0WiYB5tkRZnJIwIdMzSlIfcReEK8T7nraGOpPnv0FCW6GI4OhsIxqdUgC4RIZ1hTTT9NN+NX3QvtGtJozMdlzZMulgfM4Bp//b496epdF/751KoUg7ZZTAr+Qz8l5kxKxd4/mbl0d9wB2JEh7okSAK1qrwxyvfkGepJLgiur/OLfS1OQmqzd0VhfkVBCxZ1b1U0kQw4lZ6t6x0JZmGl5vg1waRIsoRohzXgdi6vgN2AM4MwDn9dhL1dkF3iYoPXzPIkwGSQJOjz/IhPgLCaqn3bqVZ/ratqZXQkNoIJLdr9Ocykhwj9/8QIGAXlOUCFbEDJ8ixMQXw1cP3DVAtMp2C1NxjD3A4h1FpQZwDvem7
+    ufoLicenseKey: QVY5cXpWTC8vLy8vQUFBQUtFN2VKNzBHbTB3ZGwzc1VrdFYweXp3QUNJTEdXd3BDYmhMVW5QQjR1bGRVM3pKdk1iNzhwK2NZRE9yaVQ5eFZiV2tFVFREczJTVGRYdHV1dDIwOGVFL1FjdHlIL2JEME8rZnVtUjZsTHFtYUlFVTRCNXZhK2ZqS3hlQVFSZzhCa3AxOXhaM2xmTFg1ZENNYnZzN3dxWmdjUkVuVUNzRTZNU2hTU2JrN2JKRnh4ZG9LS2ZaeXRzd3BuOHlNaDBWZkUzQTIvaDZYNTFweW52QVpGQW1zNkdKYUE1NG4wZ0tNOVpXVnlLOXBSbzV2bDJiOXM0aW4yb2FyN2s4eVZLdUtzbHZBK1ZqVzNGdCtJR3laelU2NlF2U0RUQ2U1SnJjTW9TSERrVlhzNDlQa3JNbTRIa0Z3VCtlK1c5Qml5K3d3VHh5Q3U1d0FOWkpqaHJOZjJxb3VVNWZVUnZzOGR0dzB4aDRacmxjbFJlSGw=
     delayedInitialization: 0
-    cameraDeviceModeSetting: -2
+    cameraDeviceModeSetting: -1
     maxSimultaneousImageTargets: 1
     maxSimultaneousObjectTargets: 1
     useDelayedLoadingObjectTargets: 0
     cameraDirection: 0
-    mirrorVideoBackground: 0
+    mirrorVideoBackground: 1
   digitalEyewear:
     cameraOffset: 0.06
     distortionRenderingLayer: 31
-    eyewearType: 0
+    eyewearType: 1
     stereoFramework: 0
-    seeThroughConfiguration: 0
+    seeThroughConfiguration: 1
     viewerName: 
     viewerManufacturer: 
     useCustomViewer: 0
@@ -44,8 +44,9 @@ MonoBehaviour:
       ContainsMagnet: 0
   databaseLoad:
     dataSetsToLoad:
-    - SenseSmartMarkers
-    dataSetsToActivate: []
+    - TargetLock
+    dataSetsToActivate:
+    - TargetLock
   videoBackground:
     clippingMode: 0
     numDivisions: 2

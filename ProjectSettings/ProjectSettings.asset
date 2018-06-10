@@ -11,8 +11,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: ssrp_vuforia
+  companyName: NK
+  productName: Sense Smart Region
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -38,8 +38,11 @@ PlayerSettings:
     y: 0
     width: 1
     height: 1
-  m_SplashScreenLogos: []
-  m_VirtualRealitySplashScreen: {fileID: 0}
+  m_SplashScreenLogos:
+  - logo: {fileID: 0}
+    duration: 2
+  m_VirtualRealitySplashScreen: {fileID: 2800000, guid: a128899440eb4ca1a06a556b8b2b17b1,
+    type: 3}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1024
   defaultScreenHeight: 768
@@ -255,7 +258,14 @@ PlayerSettings:
     banner: {fileID: 0}
   androidGamepadSupportLevel: 0
   resolutionDialogBanner: {fileID: 0}
-  m_BuildTargetIcons: []
+  m_BuildTargetIcons:
+  - m_BuildTarget: 
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 844c611d8989e904cba0fd67b9536d11, type: 3}
+      m_Width: 128
+      m_Height: 128
+      m_Kind: 0
   m_BuildTargetBatching: []
   m_BuildTargetGraphicsAPIs: []
   m_BuildTargetVRSettings:
@@ -264,6 +274,10 @@ PlayerSettings:
     m_Devices:
     - Oculus
     - OpenVR
+  - m_BuildTarget: Metro
+    m_Enabled: 1
+    m_Devices:
+    - WindowsMR
   m_BuildTargetEnableVuforiaSettings:
   - m_BuildTarget: Standalone
     m_Enabled: 1
@@ -565,23 +579,24 @@ PlayerSettings:
     17: MOBILE_INPUT
     20: MOBILE_INPUT
   platformArchitecture: {}
-  scriptingBackend: {}
+  scriptingBackend:
+    Metro: 2
   incrementalIl2cppBuild: {}
   additionalIl2CppArgs: 
-  scriptingRuntimeVersion: 0
+  scriptingRuntimeVersion: 1
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: ssrpvuforia
+  metroPackageName: ssrp
   metroPackageVersion: 1.0.0.0
-  metroCertificatePath: 
+  metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: ssrp_vuforia
+  metroCertificateSubject: NK
+  metroCertificateIssuer: NK
+  metroCertificateNotAfter: 0027b7dadc1fd501
+  metroApplicationDescription: ssrp Hololens with vuforia
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: ssrp
   metroCommandLineArgsFile: 
   metroTileShowName: 0
   metroMediumTileShowName: 0
@@ -673,7 +688,7 @@ PlayerSettings:
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled: {}
   facebookSdkVersion: 7.9.4
-  apiCompatibilityLevel: 2
+  apiCompatibilityLevel: 3
   cloudProjectId: 74cb26ea-ae9d-4270-98c6-afedf4897550
   projectName: ssrp_vuforia (1)
   organizationId: nk_paul
