@@ -27,12 +27,18 @@ namespace HoloToolkit.Unity
 
         private void Start()
         {
+            try { 
             FocusManager.AssertIsInitialized();
             Debug.Assert(Canvas != null);
 
             if (Canvas.isRootCanvas && Canvas.renderMode == RenderMode.WorldSpace)
             {
                 Canvas.worldCamera = FocusManager.Instance.UIRaycastCamera;
+            }
+            }
+            catch
+            {
+                // Paul says EFU
             }
         }
     }

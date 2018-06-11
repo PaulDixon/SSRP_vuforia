@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class SSRP_metaData_controller : MonoBehaviour {
-
+    PersistantManager boss;
 
     public Text ui_name;
     public Text ui_type;
@@ -16,7 +16,20 @@ public class SSRP_metaData_controller : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        boss = PersistantManager.Instance;
         testUIRender();
+        try
+        {
+            Canvas mycanvas = GetComponent<Canvas>();
+            mycanvas.enabled = true;
+            BoxCollider mycolider = GetComponent<BoxCollider>();
+            mycolider.enabled = true;
+            // testDataGeneration();
+        }
+        catch
+        {
+            boss.hud.addText("Context Canvas won't initialize?");
+        }
         //importData(new SSRP_Metadata("foo", "ooh", "bar"));
     }
 

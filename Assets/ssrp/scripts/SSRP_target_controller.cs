@@ -196,7 +196,7 @@ public class SSRP_target_controller : MonoBehaviour
                         {
                             aug_obj_script.importData(hit_response);
                         }
-                        // */
+                        
                         aug_obj.gameObject.SetActive(true);
                     }
                     else
@@ -214,4 +214,5 @@ public class SSRP_target_controller : MonoBehaviour
             boss.hud.addText("Failed to load dataset: '" + dataSetName + "'");
         }
     }
+    // */
 }

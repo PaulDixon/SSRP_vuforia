@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class SSRP_context_element_controller : MonoBehaviour {
+    PersistantManager boss;
     public Text ui_id;
     public Text ui_type;
     public GameObject ui_isPattern;
@@ -36,13 +37,25 @@ public class SSRP_context_element_controller : MonoBehaviour {
     private SSRP_ContextElement data_prev = new SSRP_ContextElement();
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
+        boss = PersistantManager.Instance;
         isClosed = true;
         testUIRender();
         testParentLink();
         testPrefabLink();
-        
-       // testDataGeneration();
+        try
+        { 
+        Canvas mycanvas = GetComponent<Canvas>();
+        mycanvas.enabled = true;
+        BoxCollider mycolider = GetComponent<BoxCollider>();
+        mycolider.enabled = true;
+            // testDataGeneration();
+        }
+        catch
+        {
+            boss.hud.addText("Context Canvas won't initialize?");
+        }
     }
 	
 	// Update is called once per frame

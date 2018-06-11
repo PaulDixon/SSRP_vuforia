@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SSRP_hud_controller : MonoBehaviour
 {
-
+    PersistantManager boss;
 
 
     public List<int> deviceCounter;
@@ -22,7 +22,7 @@ public class SSRP_hud_controller : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        boss = PersistantManager.Instance;
         info = new List<string>();
         if (ui_text != null)
         {

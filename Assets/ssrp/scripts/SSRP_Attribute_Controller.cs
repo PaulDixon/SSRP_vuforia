@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class SSRP_Attribute_Controller : MonoBehaviour {
-
+    PersistantManager boss;
     // Basic Attribute Canvas and details
     public Text ui_name;
     public Text ui_type;
@@ -37,9 +37,21 @@ public class SSRP_Attribute_Controller : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-       
+        boss = PersistantManager.Instance;
         //testDataGeneration();
-        
+        try
+        {
+            Canvas mycanvas = GetComponent<Canvas>();
+            mycanvas.enabled = true;
+            BoxCollider mycolider = GetComponent<BoxCollider>();
+            mycolider.enabled = true;
+            // testDataGeneration();
+        }
+        catch
+        {
+            boss.hud.addText("attribute Canvas won't initialize?");
+        }
+
     }
 	
 	// Update is called once per frame

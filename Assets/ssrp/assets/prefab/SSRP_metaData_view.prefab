@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 114764407476071718}
   - component: {fileID: 114951268189518390}
   - component: {fileID: 114567788937835716}
+  - component: {fileID: 65316800691289396}
   m_Layer: 9
   m_Name: SSRP_metaData_view
   m_TagString: Untagged
@@ -116,6 +117,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &65316800691289396
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1816955254282188}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 180, y: 50, z: 1}
+  m_Center: {x: 90, y: -25, z: 0}
 --- !u!114 &114093175505233548
 MonoBehaviour:
   m_ObjectHideFlags: 1

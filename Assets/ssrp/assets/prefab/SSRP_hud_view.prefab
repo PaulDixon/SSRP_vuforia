@@ -297,7 +297,6 @@ GameObject:
   - component: {fileID: 114933755850455098}
   - component: {fileID: 114276078576760982}
   - component: {fileID: 114364449704203096}
-  - component: {fileID: 114239414094327282}
   m_Layer: 5
   m_Name: SSRP_hud_view
   m_TagString: Untagged
@@ -628,18 +627,6 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: action
---- !u!114 &114239414094327282
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1799789227547560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2aebab3047f2113489ca3eb8423228b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Canvas: {fileID: 223407134464763168}
 --- !u!114 &114248624030907246
 MonoBehaviour:
   m_ObjectHideFlags: 1
